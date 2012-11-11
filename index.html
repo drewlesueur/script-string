@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta name = "viewport" content = "initial-scale = 1.0"> 
+<style>
+  * {font-family: 'gill sans'}
+  p,table {font-size: 20px}
+  .pending { color: gold;}
+  .passed { color: green;}
+  
+  table {border: 1px solid black}
+</style>
+</head>
+
+<body>
+<h1>script-string</h1>
+<p>
+Use script-string 
+when you want to
+use strings in your
+html app, strings
+that come in the
+form of script tags
+</p>
+<h2>tests</h2>
+<p>
+<table>
+ <tr>
+ <td>inline</td>
+ <td><span id="inline-result" class="pending">pending</span></td>
+ </tr>
+ <tr>
+ <td>external</td>
+ <td><span id="external-result" class="pending">pending</span></td>
+ </tr>
+</p>
+<p>
+view source to see it in action.
+or <a href="http://github.com/drewlesueur/script"
+</p>
+
+
+<script src="poor_modules/poor-module.js"></script>
+<script src="script-string.js"></script>
+<script id="external-script" src="script-string-test.txt" type="."></script>
+<script id="inline-script" type=".">
+inline works!
+</script>
+
+
+<script>
+  window.onerror = function (e) {
+    alert(e)
+    return false
+  }
+
+var script_string = poorModule("script-string")
+var inline_result = document.getElementById("inline-result")
+script_string("inline-script", function (err, str) {
+  if (str == "inline works!") {
+   
+    inline_result.classList.remove("pending")
+    inline_result.classList.add("passed")
+    inline_result.innerHTML = "passed"
+
+    
+  }
+})
+</script>
+
