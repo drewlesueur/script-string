@@ -36,13 +36,15 @@ form of script tags
 </p>
 <p>
 view source to see it in action.
-or <a href="http://github.com/drewlesueur/script"
+or <a href="https://github.com/drewlesueur/script-string/blob/master/index.html">
+see source on github
+</a>
 </p>
 
 
 <script src="poor_modules/poor-module.js"></script>
 <script src="script-string.js"></script>
-<script id="external-script" src="script-string-test.txt" type="."></script>
+<script id="external-script" src="test.txt" type="."></script>
 <script id="inline-script" type=".">
 inline works!
 </script>
@@ -56,15 +58,22 @@ inline works!
 
 var script_string = poorModule("script-string")
 var inline_result = document.getElementById("inline-result")
+var external_result = document.getElementById("external-result")
 script_string("inline-script", function (err, str) {
   if (str == "inline works!") {
-   
     inline_result.classList.remove("pending")
     inline_result.classList.add("passed")
     inline_result.innerHTML = "passed"
-
-    
   }
 })
+script_string("external-script", function (err, str) {
+  if (str == "external works!") {
+   external_result.classList.remove("pending")
+
+   external_result.classList.add("passed")
+   external_result.innerHTML = "passed"
+  }
+})
+
 </script>
 
